@@ -4,9 +4,10 @@
     PROGRAMADOR: FGrancisoc Castillo 21562
     HISTORIAL DE MODIFICACIONES:
         -Se incluyo un metodo de Saludo y despedida
-
+        -Se incluye opcionInvalida()
 
 */
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Vista {
     private Scanner scan;
@@ -18,9 +19,13 @@ public class Vista {
         System.out.println("Hola! Bienvenido al parqueo.");
     }
 
+
+    public void opcionInvalida(){
+        System.out.println("Ha ingresado una opcion invalida, vuelva a intentarlo.");
+    }
+
     public int mostrarMenu(){
         try{
-            int opcion;
             System.out.println("Que desea hacer ahora? (Ingrese el numero de opcion que desea)");
             System.out.println("1. Parquear un carro");
             System.out.println("2. Retirar un carro del parqueo");
@@ -32,8 +37,10 @@ public class Vista {
             System.out.println("8. Mostrar la marca de carros mas utilizada");
             System.out.println("9. Caracteristicas del parqueo mas utilizado");
             System.out.println("10. Salir");
-        }catch(Exception e){
-
+            return scan.nextInt();
+        }
+        catch(Exception e){
+            System.out.println(e);
             return -1;
         }
     }
