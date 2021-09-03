@@ -1,0 +1,10 @@
+Parqueo,Tamanio,Techado,Aereo,Veces Usado
+1,Compacto,true,false,0
+
+2,Estandar,true,false,0
+
+3,Grande,true,false,0
+
+4,Estandar,true,false,0
+
+5,Grande,true,false,0
