@@ -1,10 +1,5 @@
-Parqueo,Tamanio,Techado,Aereo,Veces Usado
-1,Compacto,true,false,0
-
-2,Estandar,true,false,0
-
-3,Grande,true,false,0
-
-4,Estandar,true,false,0
-
-5,Grande,true,false,0
+1;Compacto;true;false;0|SUBUWU,Mazda,2021,0
+2;Estandar;true;false;0|MJ12,Toyoa,2012,0
+3;Grande;true;false;3|ZZZ,Mimir,2021,0
+4;Estandar;true;false;1|SIUU,Salio,2015,0
+5;Grande;true;false;3|Batman,Batmovil,2002,0
