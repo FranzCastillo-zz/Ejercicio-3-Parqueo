@@ -8,7 +8,7 @@
         - se implemento el setHoraSalida
 */
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 public class Carro {
     private int horasEstacionadas;
     private String placa;
@@ -21,7 +21,7 @@ public class Carro {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
-        this.horaEntrada = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        this.horaEntrada = LocalDateTime.now().getHour();
         this.horaSalida = -1;
     }
 
@@ -29,7 +29,7 @@ public class Carro {
         if(horaSalida != -1){
             horasEstacionadas = horaSalida - horaEntrada;
         }else{
-            horasEstacionadas = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) - horaEntrada;
+            horasEstacionadas = LocalDateTime.now().getHour() - horaEntrada;
         }
     }
     
@@ -50,6 +50,7 @@ public class Carro {
      * @return int
      */
     public int getHorasEstacionadas(){
+        calcularHorasEstacionadas();
         return horasEstacionadas;
     }
     

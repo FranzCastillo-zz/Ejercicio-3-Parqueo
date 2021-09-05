@@ -5,9 +5,9 @@
     HISTORIAL DE MODIFICACIONES:
         -Se incluyo un metodo de Saludo y despedida
         -Se incluye opcionInvalida()
-
+        -Se incluyo un MostrarRechazados()
+        -Se incluyo un noHayPlaca()
 */
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Vista {
     private Scanner scan;
@@ -63,5 +63,30 @@ public class Vista {
         }catch(Exception e){
             return -1;
         }
+    }
+    public void mostrarRechazados(int rechazados){
+        System.out.println("Se ha rechazado un total de: " + rechazados + " vehiculos");
+    }
+    public void noHayPlaca(){
+        System.out.println("No existe un carro parqueado con esta placa.");
+    }
+    public void mostrarHorarioMasUtilizado(String[] datos){
+        System.out.println("La hora de entrada mas popular es: " + datos[0]);
+        System.out.println("La hora de salida mas popular es: " + datos[1]);
+    }
+    public String pedirDatosParqueo(int numParqueo){
+        String temp = "";
+        temp += Integer.toString(numParqueo) + ";";
+        System.out.println("Ingrese el tamanio del nuevo parqueo ["+ numParqueo +"]: (Compacto, Estandar, Grande)");
+        temp += scan.nextLine() + ";";
+        System.out.println("Ingrese si es techado: (true / false)");
+        temp += scan.nextLine() + ";";
+        System.out.println("Ingrese si es aereo: (true / false)");
+        temp += scan.nextLine() + ";";
+        temp += "0" + "|";
+        return temp;
+    }
+    public void mostrarPromedioUso(int dato){
+        System.out.println("El parqueo se utiliza, en promedio, " + dato + " horas");
     }
 }

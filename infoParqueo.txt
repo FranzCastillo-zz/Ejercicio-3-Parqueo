@@ -1,5 +1,10 @@
-1;Compacto;true;false;0|SUBUWU,Mazda,2021,0
-2;Estandar;true;false;0|MJ12,Toyoa,2012,0
-3;Grande;true;false;3|ZZZ,Mimir,2021,0
-4;Estandar;true;false;1|SIUU,Salio,2015,0
-5;Grande;true;false;3|Batman,Batmovil,2002,0
+1;Compacto;true;false;10|AAA,AAA,1,14
+2;Estandar;true;false;13|BBB,BBB,2,14
+3;Grande;true;false;11|AAAA,AAAA,1209,15
+4;Estandar;true;false;5|
+5;Grande;true;false;7|
+6;e;e;e;1|
+7;e;e;e;1|
+8;e;e;e;2|
+9;e;e;e;1|
+10;e;e;e;1|
