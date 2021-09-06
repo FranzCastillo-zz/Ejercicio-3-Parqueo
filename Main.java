@@ -10,13 +10,10 @@
 public class Main{
     public static void main(String[] args) {
         Vista v = new Vista();
-        //Vector parqueo = new Vector<EspacioParqueo>(5, 5);
-        //Vector carros = new Vector<Carro>(5, 5);
         Archivos a = new Archivos();
-
-        
         int opcion;
         v.saludar();
+        
         while(true){
             opcion = v.mostrarMenu();
             switch(opcion){

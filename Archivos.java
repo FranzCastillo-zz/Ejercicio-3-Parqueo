@@ -2,8 +2,10 @@
     NOMBRE DE LA CLASE: Archivos.java
     PROGRAMADOR: Francisco Castillo 21562
     HISTORIAL DE MODIFICACIONES:
-        - Se creo esta clase que resulto ser necesaria poder simplificar el manejo de archivos
-
+        - Se creo esta clase que resulto ser necesaria poder simplificar el manejo de archivos.
+            En el UML se ha descrito la necesidad de realizar estas operaciones por medio del Driver (Cosa que es imposible)
+        -Los metodos y propiedades de lo que en el UML se especifican en la clase EspacioParqueo se han colocado aca tambien,
+            para ser almacenados en persistencia.
 */
 
 import java.io.File;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 public class Archivos {
     List<String> infoParqueos; //Parqueo;Tamanio;Techado;Aereo;Veces Usado|Placa, marca, modelo, horas estacionadas
-    List<String> infoHorarios;
+    List<String> infoHorarios; //Entrada;Salida;Horas estacionado;Rechazados
 
     public Archivos(){
         leerInfoParqueo();
@@ -47,13 +49,18 @@ public class Archivos {
             File f = new File("infoHorarios.txt");
             if (f.createNewFile()) {
                 FileWriter w = new FileWriter("infoHorarios.txt");
-                w.write("Entrada;Salida;Horas estacionado");
+                w.write("Entrada;Salida;Horas estacionado;0");
                 w.close();
             }
         }catch (IOException ie) {
             System.out.println("Ocurrio un error");
         }
     }
+    
+    /** 
+     * @param numLinea Linea a cambiar
+     * @param datos Datos a colocar en esa linea
+     */
     private void cambiarLineaParqueo(int numLinea, String datos){
         try{
             Path path = Paths.get("infoParqueo.txt");
@@ -64,6 +71,11 @@ public class Archivos {
             crearArchivoParqueo();
         }
     }
+    
+    /** 
+     * @param numLinea Linea a Cambiar
+     * @param datos Datos a colocar en esa linea
+     */
     private void cambiarLineaHorario(int numLinea, String datos){
         try{
             Path path = Paths.get("infoHorarios.txt");
@@ -92,6 +104,10 @@ public class Archivos {
             crearArchivoHorario();
         }
     }
+    
+    /** 
+     * @return int La cantidad de vehiculos que se han rechazado
+     */
     public int leerRechazados(){
         leerInfoHorarios();
         String linea = infoHorarios.get(0);
@@ -106,6 +122,10 @@ public class Archivos {
         String datos = temp[0] + ";" + temp[1] + ";" + temp[2] + ";" + nuevo;
         cambiarLineaHorario(0, datos);
     }
+    
+    /** 
+     * @param hora recibe la hora de entrada en el archivo infoHorarios.txt
+     */
     private void escribirHoraEntrada(int hora){
         try{
             Path path = Paths.get("infoHorarios.txt");
@@ -116,6 +136,11 @@ public class Archivos {
             crearArchivoHorario();
         }
     }
+    
+    /** 
+     * @param i Linea en la que se realizara el calculo
+     * @return int Las horas estacionadas
+     */
     private int calcularHorasEstacionadas(int i){
         int horas = 0;
         try{
@@ -130,6 +155,10 @@ public class Archivos {
         }
         return horas;
     }
+    
+    /** 
+     * @param hora La hora en la que se esta retirando el vehiculo
+     */
     private void escribirHoraSalida(int hora){
         try{
             Path path = Paths.get("infoHorarios.txt");
@@ -153,6 +182,10 @@ public class Archivos {
             crearArchivoHorario();
         }
     }
+    
+    /** 
+     * @param c Instancia de clase Carro para escribir su informacion en el archivo.
+     */
     public void parquearCarro(Carro c){
         leerInfoParqueo();
         int i = 0;
@@ -178,6 +211,11 @@ public class Archivos {
             incrementarRechazados();
         }
     }
+    
+    /** 
+     * @param placa Okaca dek vehiculo a retirar
+     * @return boolean True si existe un vehiculo que se ha retirado.
+     */
     public boolean retirarCarro(String placa){
         leerInfoParqueo();
         int i = 0;
@@ -196,6 +234,11 @@ public class Archivos {
         }
         return retirado;
     }
+    
+    /** 
+     * @param datos EL arreglo de datos en el que se buscara la palabra con mayor frecuencia
+     * @return String la palabra con mayor frecuencia
+     */
     private String palabraMasUsada(String[] datos){
         // BY: https://www.geeksforgeeks.org/frequent-word-array-strings/
         HashMap<String, Integer> hs = new HashMap<String, Integer>();
@@ -218,6 +261,10 @@ public class Archivos {
         }
         return key;
     }
+    
+    /** 
+     * @return String[] [hora de entrada mas popular, hora de salida mas popular]
+     */
     public String[] getHorariosMasUtilizados(){
         String[] resultado = new String[2];
         try{
@@ -248,12 +295,20 @@ public class Archivos {
         }
         return resultado;
     }
+    
+    /** 
+     * @return int El valor del ultimo parqueo
+     */
     public int getUltimoParqueo(){
         leerInfoParqueo();
         String linea = infoParqueos.get(infoParqueos.size() - 1);
         String[] temp = linea.split(";");
         return Integer.parseInt(temp[0]);
     }
+    
+    /** 
+     * @param datos Los datos a escribir en el parqueo. (Ya en su formato)
+     */
     public void ampliarParqueo(String datos){
         leerInfoParqueo();
         try{
@@ -265,6 +320,10 @@ public class Archivos {
             crearArchivoParqueo();
         }
     }
+    
+    /** 
+     * @return int Cuantas horas se utiliza el parqueo, en promedio.
+     */
     public int usoPromedio(){
         int promedio = 0;
         int i = 0;
@@ -286,6 +345,10 @@ public class Archivos {
         }
         return promedio;
     }
+    
+    /** 
+     * @return int El numero de parqueo mas utilizado
+     */
     public int getParqueoMasUtilizado(){
         int mayor = 0;
         int i = 1;
@@ -309,6 +372,10 @@ public class Archivos {
         }
         return numParqueo;
     }
+    
+    /** 
+     * @return String la marca que mas se repite en el archivo infoParqueo.txt
+     */
     public String getMarcaMasUsada(){
         String resultado = "";
         try{
@@ -330,6 +397,10 @@ public class Archivos {
         }
         return resultado;
     }
+    
+    /** 
+     * @return String El texto ya con las caracteristicas
+     */
     public String getCaracteristicas(){
         String resultado = "";
         try{

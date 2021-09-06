@@ -4,8 +4,7 @@
     HISTORIAL DE MODIFICACIONES:
         - Se ha importado java.util.Calendar para el manejo de las horas
         - horaEntrada y horaSalida ahora son enteros para ser guardados en formato 24 h y solo la hora
-        - calcularHorasEstacionadas() sera void
-        - se implemento el setHoraSalida
+        - No fue necesario getHorasEstacionadas(), getHoraSalida(), getDatos()
 */
 
 import java.time.LocalDateTime;
@@ -22,19 +21,27 @@ public class Carro {
         this.horaEntrada = LocalDateTime.now().getHour();
     }    
     /** 
-     * @return String
+     * @return String la placa del vehiculo
      */
     public String getPlaca(){
         return placa;
     }
+    
+    /** 
+     * @return String marca del vehiculo
+     */
     public String getMarca(){
         return marca;
     }
+    
+    /** 
+     * @return int anio modelo del vehiculo
+     */
     public int getModelo(){
         return modelo;
     }
     /** 
-     * @return int
+     * @return int hora de entrada del vehiculo
      */
     public int getHoraEntrada(){
         return horaEntrada;
