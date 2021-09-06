@@ -89,4 +89,13 @@ public class Vista {
     public void mostrarPromedioUso(int dato){
         System.out.println("El parqueo se utiliza, en promedio, " + dato + " horas");
     }
+    public void mostrarParqueoMasUtilizado(int dato){
+        System.out.println("El parqueo mas utilizado es el: " + dato);
+    }
+    public void mostrarMarcaMasUtilizada(String dato){
+        System.out.println("La marca mas utilizada es: " + dato);
+    }
+    public void mostrarCaracteristicas(String oracion){
+        System.out.println(oracion);
+    }
 }

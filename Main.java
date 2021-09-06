@@ -45,14 +45,16 @@ public class Main{
                     v.mostrarPromedioUso(a.usoPromedio());
                 break;
                 case 6: // Numero de Parqueo mas utilizado
+                    v.mostrarParqueoMasUtilizado(a.getParqueoMasUtilizado());
                 break;
                 case 7: // Rechazados
                     v.mostrarRechazados(a.leerRechazados());
                 break;
                 case 8: // Marca mas utilizada
-
+                    v.mostrarMarcaMasUtilizada(a.getMarcaMasUsada());
                 break;
                 case 9: // Mostrar caracteristicas de parqueo mas utilizado
+                    v.mostrarCaracteristicas(a.getCaracteristicas());
                 break;
                 case 10: // Salir
                     v.despedir();

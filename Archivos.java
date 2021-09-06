@@ -243,12 +243,10 @@ public class Archivos {
             arreglo = new String[tempSalida.size()];
             tempSalida.toArray(arreglo);
             resultado[1] = palabraMasUsada(arreglo);
-
-            return resultado;
         }catch (IOException ie) {
-            System.out.println("Ocurrio un error");
-            return resultado;
+            crearArchivoHorario();
         }
+        return resultado;
     }
     public int getUltimoParqueo(){
         leerInfoParqueo();
@@ -264,7 +262,7 @@ public class Archivos {
             lines.add(datos);
             Files.write(path, lines);
         }catch (IOException ie) {
-            System.out.println("Ocurrio un error");
+            crearArchivoParqueo();
         }
     }
     public int usoPromedio(){
@@ -287,5 +285,71 @@ public class Archivos {
             crearArchivoHorario();
         }
         return promedio;
+    }
+    public int getParqueoMasUtilizado(){
+        int mayor = 0;
+        int i = 1;
+        int numParqueo = 1;
+        leerInfoParqueo();
+        try{
+            Path path = Paths.get("infoParqueo.txt");
+            List<String> lines = Files.readAllLines(path);
+            for (String linea : lines) {
+                String[] temp1 = linea.split("\\|");
+                String[] temp = temp1[0].split(";");
+                int num = Integer.parseInt(temp[4]);
+                if(num > mayor){
+                    mayor = num;
+                    numParqueo = i;
+                }
+                i++;
+            }
+        }catch (IOException ie) {
+            crearArchivoParqueo();
+        }
+        return numParqueo;
+    }
+    public String getMarcaMasUsada(){
+        String resultado = "";
+        try{
+            Path path = Paths.get("infoParqueo.txt");
+            List<String> lines = Files.readAllLines(path);
+            List<String> marcas = new ArrayList<String>();
+            for (String linea : lines) {
+                String[] temp = linea.split("\\|");
+                if(temp.length > 1){
+                    String[] carro = temp[1].split(",");
+                    marcas.add(carro[1]);
+                }
+            }
+            String[] arreglo = new String[marcas.size()];
+            marcas.toArray(arreglo);
+            resultado = palabraMasUsada(arreglo);
+        }catch (IOException ie) {
+            crearArchivoParqueo();
+        }
+        return resultado;
+    }
+    public String getCaracteristicas(){
+        String resultado = "";
+        try{
+            Path path = Paths.get("infoParqueo.txt");
+            List<String> lines = Files.readAllLines(path);
+            int parqueo = getParqueoMasUtilizado();
+            for (String linea : lines) {
+                String[] temp = linea.split("\\|");
+                String[] datos = temp[0].split(";");
+                if(Integer.parseInt(datos[0]) == parqueo){
+                    resultado = "El parqueo " + parqueo + " tiene las siguientes caracteristicas: \n"+
+                    "- Tamanio: " + datos[1] + "\n"+
+                    "- Techado: " + datos[2] + "\n"+
+                    "- Aereo: " + datos[3] + "\n"+
+                    "- Veces usado: " + datos[4];
+                }
+            }
+        }catch (IOException ie) {
+            crearArchivoParqueo();
+        }
+        return resultado;
     }
 }
